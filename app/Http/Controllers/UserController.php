@@ -31,6 +31,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+        $user->assignRole('admin');
 
 
         return response()->json($user, 201);
