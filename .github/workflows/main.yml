@@ -10,6 +10,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          port: ${{ secrets.SSH_PORT }}
-          key: ${{ secrets.SSH_KEY }}
-          script: cd public && git pull
+          port: 40265
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd public && git pull
