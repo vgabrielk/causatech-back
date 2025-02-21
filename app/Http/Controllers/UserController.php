@@ -9,38 +9,38 @@ use App\Models\User;
 use App\Repositories\UserRepositoryEloquent;
 use App\Rules\MobilePhoneRule;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
     use PasswordValidationRules;
 
-    public function register(Request $request): \Illuminate\Http\JsonResponse
+    public function register(UserRequest $request): JsonResponse
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email',
-            'password' => 'required|string|min:8',
-        ]);
 
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
-
+        $role = $request->role;
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        $user->assignRole('admin');
-
+        $user->assignRole($role);
 
         return response()->json($user, 201);
     }
 
-
     public function index()
     {
-        return $user = User::orderBy('id', 'desc')->paginate(10);
+        $user = User::orderBy('id', 'desc')->paginate(10);
+        $user->load('roles');
+        return $user;
 
+    }
+
+    public function show(Request $request)
+    {
+        $user = User::where('id', $request->user()->id)->first();
+        $user->load('roles');
+        return $user;
     }
 }
