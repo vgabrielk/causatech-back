@@ -12,6 +12,6 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           port: ${{ secrets.SSH_PORT }}
-          key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCezjSUY1ilZty7i7bIZYVTgPwnnl6smd3A2HXvaIpsHovQ2oFz7SPBvhdpwyW9eOh8nN5hLpYNohwUNCDNLvdm/ADWZ4wMB3YK0G/aPV3ssLhpmcYSTOa1ujd3WZiKuSp/WNIiOCEkGyRtwZaes+4IgN/jC+HIZ786wL7t6G+X5PRtFvwaDDj1qxBCtRGfJPAkdNIAtUABLivAfu0Jbk2+s9lIjfN9sTbyu7tMC6hlssXlo5+5Eo0bN2G+JkcX4GuTg5fIozDCDMH0J0ro14P2MpBAZ6zUkatYa0zQ+hb1nFXd3LjJfl/iifIyk6e4MXeCdAD5i8/yWitLaiOlVhTPZZctUmOhey96zfb+c3ZuVymsJHZfyhmseb8I7GwvEC2Gtt333XKSvo93gaL9IP9cqDKY99NaKuKhHcAMuFOoEy7kcspnNZD12iLFktmm7zjEhqQmqjkMOuc3rq934/9oQkKrQ9lcl8GuGMkl6SSgHDauf0bpshBXL5oO1RqJTdM
+          key: ${{ secrets.PRIVATE_KEY }}
           script: |
             cd public && git pull
