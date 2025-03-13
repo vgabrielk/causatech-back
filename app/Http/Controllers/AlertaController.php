@@ -1,6 +1,5 @@
 <?php
 
-// app/Http/Controllers/AlertaController.php
 namespace App\Http\Controllers;
 
 use App\Models\Alerta;

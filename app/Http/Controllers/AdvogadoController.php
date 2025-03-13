@@ -1,6 +1,5 @@
 <?php
 
-// app/Http/Controllers/AdvogadoController.php
 namespace App\Http\Controllers;
 
 use App\Models\Advogado;

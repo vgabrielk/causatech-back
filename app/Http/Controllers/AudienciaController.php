@@ -1,6 +1,5 @@
 <?php
 
-// app/Http/Controllers/AudienciaController.php
 namespace App\Http\Controllers;
 
 use App\Models\Audiencia;

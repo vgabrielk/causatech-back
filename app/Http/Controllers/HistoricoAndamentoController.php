@@ -1,6 +1,5 @@
 <?php
 
-// app/Http/Controllers/HistoricoAndamentoController.php
 namespace App\Http\Controllers;
 
 use App\Models\HistoricoAndamento;

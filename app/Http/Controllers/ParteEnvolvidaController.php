@@ -1,6 +1,5 @@
 <?php
 
-// app/Http/Controllers/ParteEnvolvidaController.php
 namespace App\Http\Controllers;
 
 use App\Models\ParteEnvolvida;

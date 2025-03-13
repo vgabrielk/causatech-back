@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::apiResource('/partesenvolvidas', ParteEnvolvidaController::class);
     Route::apiResource('/audiencias', AudienciaController::class);
     Route::apiResource('/alertas', AlertaController::class);
-
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);

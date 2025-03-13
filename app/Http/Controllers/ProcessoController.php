@@ -1,6 +1,5 @@
 <?php
 
-// app/Http/Controllers/ProcessoController.php
 namespace App\Http\Controllers;
 
 use App\Models\Processo;
