@@ -9,7 +9,7 @@ class AdvogadoController extends Controller
 {
     public function index()
     {
-        return Advogado::all();
+        return Advogado::paginate();
     }
 
     public function store(Request $request)
