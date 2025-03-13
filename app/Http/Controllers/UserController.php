@@ -10,6 +10,7 @@ use App\Repositories\UserRepositoryEloquent;
 use App\Rules\MobilePhoneRule;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserRequest;
+use Illuminate\Http\JsonResponse;
 
 class UserController extends Controller
 {
@@ -24,7 +25,9 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        $user->assignRole($role);
+
+        $role ? $user->assignRole($role) : $user->assignRole('admin');
+
 
         return response()->json($user, 201);
     }
