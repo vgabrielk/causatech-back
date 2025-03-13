@@ -9,7 +9,7 @@ class ClienteController extends Controller
 {
     public function index()
     {
-        return Cliente::all();
+        return Cliente::paginate();
     }
 
     public function store(Request $request)
@@ -17,8 +17,11 @@ class ClienteController extends Controller
         $request->validate([
             'nome' => 'required',
             'cpf' => 'required|unique:clientes',
+            'rg' => 'required|unique:clientes',
+            'email' => 'required|unique:clientes',
+            'telefone' => 'nullable|unique:clientes',
+            'endereco' => 'nullable',
         ]);
-
         return Cliente::create($request->all());
     }
 
