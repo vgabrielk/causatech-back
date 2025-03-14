@@ -1,66 +1,63 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# CAUSA TECH - BACKEND
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 📖 Sobre o Projeto
 
-## About Laravel
+Esse repositório é a API backend de um sistema desenvolvido para advogados, oferecendo funcionalidades essenciais para a gestão de processos, clientes e atividades jurídicas. Este projeto é construído utilizando Laravel e está focado em fornecer uma estrutura robusta e segura para manipulação e armazenamento dos dados.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Funcionalidades
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+🟧 - Em andamento | ✅ - Criado
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+##
 
-## Learning Laravel
+✅ CRUD de Processos: Criação, leitura, atualização e exclusão de processos jurídicos. <br/>
+✅ Gerenciamento de Clientes: Cadastro e visualização de clientes.
+<br/>
+🟧 Documentos: Upload, armazenamento e consulta de documentos relacionados aos processos.
+<br/>
+🟧 Pesquisa Avançada: Ferramentas de busca eficientes para encontrar informações rapidamente.
+<br/>
+🟧 Notificações e Alertas: Controle de prazos e movimentações importantes.
+<br/>
+✅ Autenticação: Controle de acesso + Autenticação JWT.
+<br/>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Informações principais para o CRUD de **Processos**:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. **Número do Processo**:
+    - O identificador único do processo (por exemplo, número do processo no formato CNJ ou outro padrão aplicável).
+2. **Tipo de Processo**:
+    - Classificação do tipo de processo (ex: cível, criminal, trabalhista, etc.).
+3. **Status do Processo**:
+    - O andamento do processo (ex: em andamento, finalizado, aguardando audiência, etc.).
+4. **Data de Abertura**:
+    - A data em que o processo foi iniciado.
+5. **Data de Fechamento** (se aplicável):
+    - A data de encerramento do processo, caso já tenha sido finalizado.
+6. **Partes Envolvidas**:
+    - Informações sobre as partes envolvidas (ex: cliente, réu, autor, advogado responsável, etc.).
+7. **Advogado Responsável**:
+    - Quem é o advogado responsável pelo processo. Pode estar relacionado ao cadastro de advogados do sistema.
+8. **Área ou Assunto do Processo**:
+    - Área jurídica (ex: direito de família, direito do consumidor, etc.).
+9. **Juízo ou Vara**:
+    - A vara em que o processo está sendo tratado, com a possibilidade de vincular a informações sobre o tribunal.
+10. **Descrição do Processo**:
+    - Resumo ou breve descrição do caso (útil para contextualização interna).
+11. **Documentos Anexados**:
+    - Upload de documentos relacionados ao processo, como petições, despachos, decisões, etc.
+12. **Audiências Agendadas**:
+    - Data e hora das audiências ou eventos relacionados ao processo.
+13. **Histórico de Andamentos**:
+    - Acompanhamento dos principais movimentos do processo (decisões, audiências, despachos, etc.).
+14. **Valor da Causa** (se aplicável):
+    - O valor envolvido no processo, especialmente importante em processos cíveis e trabalhistas.
+15. **Sentenças/Decisões**:
+    - Registro das sentenças e decisões importantes do processo.
+16. **Links e Referências Externas**:
+    - Links para consultas externas, como sites de tribunais, páginas de jurisprudência, ou links específicos do processo.
+17. **Alertas e Notificações**:
+    - Notificações relacionadas a prazos e movimentações importantes no processo.
+18. **Prazos**:
+    - Controle dos prazos processuais, incluindo alertas quando algum prazo estiver próximo do vencimento.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
