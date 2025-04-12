@@ -19,7 +19,6 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/user', [UserController::class, 'show'])->middleware('role:admin');
     Route::apiResource('/contracts', ContractController::class);
     Route::apiResource('/advogados', AdvogadoController::class);
-    Route::apiResource('/clientes', ClienteController::class);
     Route::apiResource('/processos', ProcessoController::class);
     Route::apiResource('/documentos', DocumentoController::class);
     Route::apiResource('/historicoandamentos', HistoricoAndamentoController::class);
@@ -30,4 +29,5 @@ Route::group(['middleware' => 'auth:api'], function () {
 });
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::apiResource('/clientes', ClienteController::class);
 
