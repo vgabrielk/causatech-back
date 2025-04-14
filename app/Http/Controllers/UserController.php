@@ -18,18 +18,30 @@ class UserController extends Controller
 
     public function register(UserRequest $request): JsonResponse
     {
+        try {
+            $role = $request->role;
 
-        $role = $request->role;
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
 
-        $role ? $user->assignRole($role) : $user->assignRole('admin');
+            $role ? $user->assignRole($role) : $user->assignRole('admin');
 
+            return response()->json($user, 201);
 
-        return response()->json($user, 201);
+        } catch (\Illuminate\Database\QueryException $e) {
+            \Log::error('Erro ao registrar usuário', [
+                'message' => $e->getMessage(),
+                'email' => $request->email
+            ]);
+
+            return response()->json([
+                'error' => 'Erro ao registrar usuário.',
+                'details' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function index()
