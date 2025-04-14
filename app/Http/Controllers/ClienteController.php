@@ -3,26 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Http\Requests\ClienteRequest;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
     public function index()
     {
-        return Cliente::paginate();
+        return Cliente::orderBy('id', 'desc')->paginate();
     }
 
-    public function store(Request $request)
+    public function store(ClienteRequest $request)
     {
-        $request->validate([
-            'nome' => 'required',
-            'cpf' => 'required|unique:clientes',
-            'rg' => 'required|unique:clientes',
-            'email' => 'required|unique:clientes',
-            'telefone' => 'nullable|unique:clientes',
-            'endereco' => 'nullable',
-        ]);
-        return Cliente::create($request->all());
+
+        return Cliente::create($request->validated());
     }
 
     public function show(Cliente $cliente)
@@ -30,9 +24,9 @@ class ClienteController extends Controller
         return $cliente;
     }
 
-    public function update(Request $request, Cliente $cliente)
+    public function update(ClienteRequest $request, Cliente $cliente)
     {
-        $cliente->update($request->all());
+        $cliente->update($request->validated());
         return $cliente;
     }
 

@@ -13,7 +13,10 @@ class ContractController extends Controller
      */
     public function index()
     {
-        $contracts = Contract::with('user')->paginate();
+        $user = auth()->user();
+        $contracts = Contract::with('user')
+        ->where('user_id', $user->id)
+        ->paginate();
         return response()->json($contracts);
     }
 

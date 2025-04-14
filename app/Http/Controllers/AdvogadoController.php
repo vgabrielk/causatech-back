@@ -3,24 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Advogado;
+use App\Http\Requests\AdvogadoRequest;
 use Illuminate\Http\Request;
 
 class AdvogadoController extends Controller
 {
     public function index()
     {
-        return Advogado::paginate();
+        return Advogado::orderBy('id', 'desc')->paginate();
     }
 
-    public function store(Request $request)
+    public function store(AdvogadoRequest $request)
     {
-        $request->validate([
-            'nome' => 'required',
-            'oab' => 'required|unique:advogados',
-            'estado_oab' => 'required',
-        ]);
-
-        return Advogado::create($request->all());
+        return Advogado::create($request->validated());
     }
 
     public function show(Advogado $advogado)
@@ -28,9 +23,9 @@ class AdvogadoController extends Controller
         return $advogado;
     }
 
-    public function update(Request $request, Advogado $advogado)
+    public function update(AdvogadoRequest $request, Advogado $advogado)
     {
-        $advogado->update($request->all());
+        $advogado->update($request->validated());
         return $advogado;
     }
 

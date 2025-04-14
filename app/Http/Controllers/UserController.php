@@ -26,7 +26,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $role ? $user->assignRole($role) : $user->assignRole('admin');
+        $role ? $user->assignRole($role, 'api') : $user->assignRole('admin', 'api');
 
 
         return response()->json($user, 201);

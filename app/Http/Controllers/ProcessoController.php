@@ -9,7 +9,7 @@ class ProcessoController extends Controller
 {
     public function index()
     {
-        return Processo::with(['cliente', 'advogado', 'partesEnvolvidas', 'audiencias', 'documentos', 'historicoAndamento', 'alertas'])->get();
+        return Processo::with(['cliente', 'advogado', 'partesEnvolvidas', 'audiencias', 'documentos', 'historicoAndamento', 'alertas'])->paginate();
     }
 
     public function store(Request $request)
