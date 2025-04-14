@@ -17,14 +17,14 @@ class AdvogadoRequest extends FormRequest
         $advogadoId = $this->route('advogado')?->id;
 
         return [
-            'nome' => 'nullable|string|max:255',
+            'nome' => 'required|string|max:255',
             'oab' => [
-                'nullable',
+                'required',
                 'digits_between:4,10',
                 Rule::unique('advogados', 'oab')->ignore($advogadoId),
             ],
             'estado_oab' => [
-                'nullable',
+                'required',
                 'size:2',
                 'alpha',
             ],
@@ -34,10 +34,16 @@ class AdvogadoRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'nome.required' => 'O nome é obrigatório.',
+            'nome.string' => 'O nome deve ser uma string.',
+            'nome.max' => 'O nome deve ter no máximo 255 caracteres.',
+            'oab.required' => 'O número da OAB é obrigatório.',
+            'oab.digits' => 'O número da OAB deve conter apenas dígitos numéricos.',
             'oab.digits_between' => 'A OAB deve conter entre 4 e 10 dígitos numéricos.',
             'oab.unique' => 'Já existe um advogado com esse número de OAB.',
             'estado_oab.size' => 'O estado da OAB deve conter exatamente 2 letras.',
             'estado_oab.alpha' => 'O estado da OAB deve conter apenas letras.',
+            'estado_oab.required' => 'O estado da OAB é obrigatório.',
         ];
     }
 }
