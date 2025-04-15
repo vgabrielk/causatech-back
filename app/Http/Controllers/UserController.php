@@ -25,11 +25,15 @@ class UserController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'tenant_id' => null,
             ]);
 
-            $role ? $user->assignRole($role) : $user->assignRole('admin');
+            $user->tenant_id = $user->id;
+            $user->assignRole('admin');
+            $user->save();
 
-            return response()->json($user, 201);
+
+            return response()->json($user->load('roles'), 201);
 
         } catch (\Illuminate\Database\QueryException $e) {
             \Log::error('Erro ao registrar usuário', [
@@ -51,11 +55,22 @@ class UserController extends Controller
         return $user;
 
     }
-
     public function show(Request $request)
     {
-        $user = User::where('id', $request->user()->id)->first();
-        $user->load('roles');
-        return $user;
+        try {
+            $user = User::where('id', $request->user()->id)->firstOrFail();
+            $user->load('roles');
+
+            return response()->json($user);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['error' => 'Usuário não encontrado.'], 404);
+        } catch (\Exception $e) {
+            \Log::error('Erro ao buscar usuário', [
+                'message' => $e->getMessage(),
+                'user_id' => optional($request->user())->id,
+            ]);
+
+            return response()->json(['error' => 'Erro ao buscar usuário.', $e->getMessage()], 500);
+        }
     }
 }
