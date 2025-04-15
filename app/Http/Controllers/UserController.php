@@ -38,6 +38,7 @@ class UserController extends Controller
                     'name' => $request->name,
                     'domain' => $domain,
                 ]);
+                $tenant->refresh();
                 $user->tenant_id = $tenant->id;
                 $user->save();
 

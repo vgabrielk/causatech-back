@@ -13,10 +13,11 @@ use App\Http\Controllers\HistoricoAndamentoController;
 use App\Http\Controllers\ParteEnvolvidaController;
 use App\Http\Controllers\AudienciaController;
 use App\Http\Controllers\AlertaController;
+use App\Http\Controllers\TaskController;
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/users', [UserController::class, 'index'])->middleware('role:admin');
-    Route::get('/user', [UserController::class, 'show'])->middleware('role:admin');
+    Route::get('/user', [UserController::class, 'show']);
     Route::apiResource('/contracts', ContractController::class);
     Route::apiResource('/advogados', AdvogadoController::class);
     Route::apiResource('/processos', ProcessoController::class);
@@ -31,3 +32,5 @@ Route::group(['middleware' => 'auth:api'], function () {
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::get('/tasks', [TaskController::class, 'index']);
+Route::post('/tasks', [TaskController::class, 'store']);

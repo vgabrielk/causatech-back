@@ -11,7 +11,7 @@ class Processo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'numero', 'assunto', 'data_inicio', 'data_fim', 'status', 'cliente_id', 'advogado_id',
+        'numero', 'assunto', 'data_inicio', 'data_fim', 'status', 'cliente_id', 'advogado_id', 'tenant_id'
     ];
 
     public function cliente()

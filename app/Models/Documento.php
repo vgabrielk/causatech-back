@@ -10,7 +10,7 @@ class Documento extends Model
     use HasFactory;
 
     protected $fillable = [
-        'processo_id', 'nome', 'tipo', 'descricao',
+        'processo_id', 'nome', 'tipo', 'descricao', 'tenant_id'
     ];
 
     public function processo()

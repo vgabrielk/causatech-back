@@ -21,3 +21,6 @@ yarn-error.log
 /.vscode
 /.zed
 .env
+
+# Local Netlify folder
+.netlify

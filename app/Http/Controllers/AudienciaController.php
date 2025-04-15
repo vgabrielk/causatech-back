@@ -18,6 +18,9 @@ class AudienciaController extends Controller
             'data' => 'required|date',
             'descricao' => 'nullable|string|max:255',
         ]);
+        $request->validate([
+            'processo_id' => 'required|exists:processos,id',
+        ]);
 
         return Audiencia::create($request->all());
     }

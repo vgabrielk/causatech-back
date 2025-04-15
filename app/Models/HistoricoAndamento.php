@@ -10,7 +10,7 @@ class HistoricoAndamento extends Model
     use HasFactory;
 
     protected $fillable = [
-        'processo_id', 'descricao', 'data',
+        'processo_id', 'descricao', 'data', 'tenant_id'
     ];
 
     public function processo()

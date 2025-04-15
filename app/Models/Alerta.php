@@ -10,7 +10,7 @@ class Alerta extends Model
     use HasFactory;
 
     protected $fillable = [
-        'processo_id', 'titulo', 'mensagem', 'data_alerta',
+        'processo_id', 'titulo', 'mensagem', 'data_alerta', 'tenant_id'
     ];
 
     public function processo()

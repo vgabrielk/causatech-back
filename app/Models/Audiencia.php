@@ -10,7 +10,7 @@ class Audiencia extends Model
     use HasFactory;
 
     protected $fillable = [
-        'processo_id', 'data_audiencia', 'local', 'status',
+        'processo_id', 'data_audiencia', 'local', 'status', 'tenant_id'
     ];
 
     public function processo()

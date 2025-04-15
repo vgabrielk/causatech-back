@@ -21,7 +21,7 @@ class AuthController{
 
         $credentials = $request->only('email', 'password');
 
-        $user = User::with('roles')->where('email', $credentials['email'])->first();
+        $user = User::with(['roles', 'tenant'])->where('email', $credentials['email'])->first();
 
 
 

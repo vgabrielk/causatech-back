@@ -10,7 +10,7 @@ class ParteEnvolvida extends Model
     use HasFactory;
 
     protected $fillable = [
-        'processo_id', 'nome', 'tipo',
+        'processo_id', 'nome', 'tipo', 'tenant_id'
     ];
 
     public function processo()
