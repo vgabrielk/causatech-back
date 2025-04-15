@@ -21,7 +21,9 @@ class AuthController{
 
         $credentials = $request->only('email', 'password');
 
-        $user = User::where('email', $credentials['email'])->first();
+        $user = User::with('roles')->where('email', $credentials['email'])->first();
+
+
 
         if (!$user) {
             return response()->json(['error' => 'Usuário não encontrado.'], 404);
@@ -31,7 +33,8 @@ class AuthController{
             $token = $user->createToken('auth_token')->accessToken;
 
             return response()->json([
-                'token' => $token
+                'token' => $token,
+                'user' => $user,
             ]);
         }
 
