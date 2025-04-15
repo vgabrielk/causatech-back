@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Fortify\PasswordValidationRules;
+use App\Models\Tenant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
-use App\Repositories\UserRepositoryEloquent;
-use App\Rules\MobilePhoneRule;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -21,19 +22,31 @@ class UserController extends Controller
         try {
             $role = $request->role;
 
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'tenant_id' => null,
-            ]);
+            $user = DB::transaction(function () use ($request, $role) {
+                $user = User::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                    'tenant_id' => null,
+                ]);
 
-            $user->tenant_id = $user->id;
-            $user->assignRole('admin');
-            $user->save();
+                $slug = Str::slug($user->name);
+                $domain = "{$slug}-{$user->id}.causatech.com";
 
+                $tenant = Tenant::create([
+                    'id' => Str::uuid(),
+                    'name' => $request->name,
+                    'domain' => $domain,
+                ]);
+                $user->tenant_id = $tenant->id;
+                $user->save();
 
-            return response()->json($user->load('roles'), 201);
+                $user->assignRole($role ?? 'admin');
+
+                return $user;
+            });
+
+            return response()->json($user->load(['roles']), 201);
 
         } catch (\Illuminate\Database\QueryException $e) {
             \Log::error('Erro ao registrar usuário', [

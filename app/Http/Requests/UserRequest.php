@@ -24,6 +24,7 @@ class UserRequest extends FormRequest
             'email' => 'required|string|email|max:255|unique:users,email',
             'password' => 'required|string|min:8',
             'role' => 'nullable|string|max:255', //Nullable por enquanto
+            'tenant_id' => 'nullable|string|max:255',
 
         ];
     }

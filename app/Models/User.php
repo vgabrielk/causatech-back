@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Traits\BelongsToTenant;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,7 +13,7 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasApiTokens, HasRoles;
+    use HasFactory, Notifiable, HasApiTokens, HasRoles, BelongsToTenant;
 
     /**
      * The attributes that are mass assignable.
@@ -22,7 +24,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'tenant_id'
     ];
+
 
     protected $guard_name = 'api';
 
@@ -47,5 +51,9 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class);
     }
 }

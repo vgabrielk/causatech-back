@@ -15,7 +15,7 @@ class Contract extends Model
         'start_date',
         'end_date',
         'value',
-        'details',
+        'details', 'tenant_id'
     ];
     protected $casts = [
         'details' => 'array',
